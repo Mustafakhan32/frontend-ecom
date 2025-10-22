@@ -17,14 +17,14 @@ const AboutUs = () => {
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-start items-start p-4 md:p-6 text-white rounded-lg">
                         <h1 className="text-2xl md:text-3xl font-extrabold mb-4 mt-2">About Us</h1>
                         <p className="text-sm md:text-lg leading-relaxed mb-2">
-                            Welcome to <span className="font-bold">dazled</span>, your premier
-                            <span className="font-semibold"> Clothing Boutique Store</span>. We’re excited to bring you a unique blend of elegance, quality, and contemporary style. Our collections are carefully curated to offer fashion-forward pieces that elevate any occasion, whether casual or formal. <br /><br />
-
-                            At dazled, we believe that style is personal and should reflect your individuality. That’s why we focus on timeless classics and on-trend pieces designed to suit every personality and body type. From luxurious fabrics to attention to detail, every item is crafted to ensure comfort, durability, and a refined look that resonates with confidence. <br /><br />
+                            Welcome to <span className="font-bold">NR</span>, your premier
+                            <span className="font-semibold"> Clothing Boutique Store</span>. where fashion meets individuality. At NR, we believe clothing is more than just fabric—it's a statement of who you are. Our carefully curated collections blend timeless style with modern trends, offering high-quality apparel for those who value comfort, confidence, and self-expression. <br /><br />
+                            Whether you're dressing for everyday life or a special occasion, NR delivers versatile and stylish pieces designed to fit seamlessly into your lifestyle. With a focus on craftsmanship, sustainability, and customer satisfaction, we're here to help you look and feel your best—every single day.
+                            and a refined look that resonates with confidence. <br /><br />
                         </p>
 
                         <p className="text-md md:text-xl leading-relaxed mb-2">
-                            Founded in <span className="font-semibold">2022</span> by <span className="font-semibold">BAZ</span>.
+                            Founded in <span className="font-semibold">2022</span> by <span className="font-semibold">NR – Wear Your Confidence.</span>.
                         </p>
                     </div>
                 </div>

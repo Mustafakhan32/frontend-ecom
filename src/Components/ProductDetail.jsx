@@ -416,15 +416,6 @@ const ProductDetail = () => {
                 </button>
               )}
 
-              {/* /* Toggle Size Chart Button */}
-              <button
-                className={`px-4 py-2 rounded-lg transition duration-300 ease-in-out text-white ${showSizeChart ? "bg-red-500 hover:bg-red-600" : "bg-slate-900 hover:bg-slate-800"
-                  }`}
-                onClick={() => setShowSizeChart(!showSizeChart)}
-                title="Size Chart Image"
-              >
-                <img width={25} height={25} src={lg} alt="Size Chart Image" />
-              </button>
 
               {/* /* Toggle Review Form Button */}
               <button
