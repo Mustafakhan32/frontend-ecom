@@ -13,7 +13,7 @@ export default function LoginContent() {
     const localstring1 = `http://localhost:8000`
     const localstring2 = `http://ec2-13-233-91-181.ap-south-1.compute.amazonaws.com:443`
 
-    const localstring = `https://backend-seprate.onrender.com`;
+    const localstring = `https://backend-ecom-mfns.onrender.com`;
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -158,13 +158,13 @@ export default function LoginContent() {
                     >
                         {loading ? 'Logging in...' : 'Log In'}
                     </button>
-                    <button
+                    {/* <button
                         type="button"
                         onClick={handleGoogleLogin}
                         className="container mx-auto mt-4 bg-red-600 text-white active:bg-red-700 hover:bg-red-700 transition-colors w-full px-4 py-2 rounded-sm"
                     >
                         Login with Google
-                    </button>
+                    </button> */}
                     {/* Signup Link */}
                     <p className="text-sm text-center mt-4">
                         Don’t have an account? <Link to={'/signup'} className="text-black font-semibold hover:underline">Signup</Link>

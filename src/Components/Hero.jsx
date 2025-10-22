@@ -11,7 +11,7 @@ const Hero = () => {
     const localstring1 = `http://localhost:8000`
     const localstring2 = `http://ec2-13-233-91-181.ap-south-1.compute.amazonaws.com:80`
     
-    const localstring = `https://backend-seprate.onrender.com`
+    const localstring = `https://backend-ecom-mfns.onrender.com`
     useEffect(() => {
         // Fetch slides from the backend API
         const fetchSlides = async () => {

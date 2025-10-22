@@ -22,7 +22,7 @@ export default function CheckoutComponent() {
     const [couponCode, setCouponCode] = useState('');
     const [discount, setDiscount] = useState(0);
 
-    const localstring = `https://backend-seprate.onrender.com`
+    const localstring = `https://backend-ecom-mfns.onrender.com`
     const { cartItems, setCartItems, setWishlistItems, removeFromCart } = useCart(); // Include updateCartItemQuantity from context
     const [auth] = useAuth();
 
@@ -213,7 +213,7 @@ export default function CheckoutComponent() {
                         <h2 className="text-2xl font-bold mb-4">Delivery</h2>
 
                         <div className="flex mb-4">
-                            <input type="text" value={formData.name} required
+                            <input type="text" name='name' value={formData.name} required
                                 onChange={handleChange} placeholder="Your Name" className="w-full p-2  border  text-black rounded " />
                         </div>
 
@@ -221,6 +221,7 @@ export default function CheckoutComponent() {
                             value={formData.email}
                             onChange={handleChange}
                             type="email"
+                            name='email'
                             required
                             placeholder="Your Email Address"
                             className="w-full p-2 mb-4  border  text-black rounded"
@@ -231,7 +232,7 @@ export default function CheckoutComponent() {
                             value={formData.phone}
                             onChange={handleChange}
                             required
-
+                            name='phone'
                             placeholder="Phone"
                             className="w-full p-2 mb-4  border  text-black rounded"
                             readOnly
@@ -242,6 +243,7 @@ export default function CheckoutComponent() {
                             value={formData.address}
                             onChange={handleChange}
                             required
+                            name='address'
                             placeholder="Address"
                             className="w-full p-2 mb-4  border  text-black rounded"
                         />

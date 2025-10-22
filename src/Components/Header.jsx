@@ -23,7 +23,7 @@ export default function Header({ setCartOpen, setWishOpen }) {
 
     const locastring1 = `http://localhost:8000`
     const localstring2 = `http://ec2-13-233-91-181.ap-south-1.compute.amazonaws.com:80`
-    const localstring = `https://backend-seprate.onrender.com`
+    const localstring = `https://backend-ecom-mfns.onrender.com`
     const { cartItems, wishlistItems, setCartItems, setWishlistItems } = useCart();
     const resultsRef = useRef(null); // Define the ref for search results
 
@@ -112,7 +112,7 @@ export default function Header({ setCartOpen, setWishOpen }) {
 
                 {/* For larger screens: Navigation Links */}
                 <ul className='hidden nav-bars lg-block md:block ml-72 xl:flex items-center gap-7 font-semibold text-base'>
-                    <Link to={'/product'} title='product' className='p-3 ml-14 hover:bg-gray-400 hover:text-white rounded-md transition-all cursor-pointer'>Product</Link>
+                    {/* <Link to={'/product'} title='product' className='p-3 ml-14 hover:bg-gray-400 hover:text-white rounded-md transition-all cursor-pointer'>Product</Link> */}
                     <Link to={'/about'} title='about' className='p-3 hover:bg-gray-400 hover:text-white rounded-md transition-all cursor-pointer'>About</Link>
 
                     {/* Show login/signup only if not signed in */}

@@ -17,7 +17,7 @@ const ForgotComponent = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('https://backend-seprate.onrender.com/api/user/forgot-password', { email });
+            const response = await axios.post('https://backend-ecom-mfns.onrender.com/api/user/forgot-password', { email });
             if (response.data.success) {
                 toast.success('Password reset link sent to your email.');
 

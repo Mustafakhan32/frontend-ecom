@@ -16,7 +16,7 @@ const FeatureProduct = () => {
     const localstring1 = `http://localhost:8000`
     const localstring2 = `http://ec2-13-233-91-181.ap-south-1.compute.amazonaws.com:80`
 
-    const localstring = `https://backend-seprate.onrender.com`
+    const localstring = `https://backend-ecom-mfns.onrender.com`
     const { cartItems, addToCart, removeFromCart, wishlistItems, addToWishlist, removeFromWishlist } = useCart(); // Destructure from context
 
     // Fetch featured products from the backend

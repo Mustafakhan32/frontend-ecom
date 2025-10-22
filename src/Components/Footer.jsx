@@ -16,8 +16,8 @@ export default function Footer() {
     const handleSubscribeToggle = async () => {
         try {
             const endpoint = isSubscribed
-                ? 'https://backend-seprate.onrender.com/api/user/unsubscribe-newsletter'
-                : 'https://backend-seprate.onrender.com/api/user/subscribe-newsletter';
+                ? 'https://backend-ecom-mfns.onrender.com/api/user/unsubscribe-newsletter'
+                : 'https://backend-ecom-mfns.onrender.com/api/user/subscribe-newsletter';
 
             const response = await axios.post(endpoint, {
                 userId: auth?.user?._id,

@@ -37,7 +37,7 @@ const ResetComponent = () => {
 
         try {
             // const token = new URLSearchParams(window.location.search).get('token');
-            const response = await axios.post(`https://backend-seprate.onrender.com/api/user/reset-code-password`, {
+            const response = await axios.post(`https://backend-ecom-mfns.onrender.com/api/user/reset-code-password`, {
                 ...formData 
             });
 

@@ -5,11 +5,11 @@ const AboutUs = () => {
         <div className="relative container mx-auto p-5 mt-8 mb-8 bg-gray-50 rounded-lg shadow-md">
 
             {/* Two Columns Container */}
-            <div className="grid  grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid  grid-cols-1 md:grid-cols-1 gap-6">
                 {/* Left Side - Image */}
                 <div className="relative w-full min-h-[500px] md:h-[600px] rounded-lg overflow-hidden shadow-lg">
                     <div
-                        style={{ backgroundColor: '#e1c6b3' }}
+                        style={{ backgroundColor: '#0b0b15' }}
                         className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110"
                     ></div>
 
@@ -33,7 +33,7 @@ const AboutUs = () => {
 
 
                 {/* Contact Form */}
-                <div className="bg-white shadow-lg rounded-lg p-8 space-y-6">
+                {/* <div className="bg-white shadow-lg rounded-lg p-8 space-y-6">
                     <h2 className="text-3xl font-extrabold text-gray-800">
                         Get In Touch
                     </h2>
@@ -72,7 +72,7 @@ const AboutUs = () => {
                             Send Message
                         </button>
                     </form>
-                </div>
+                </div> */}
             </div>
         </div>
     );
