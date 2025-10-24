@@ -114,175 +114,305 @@ export default function UserProfile() {
     // Determine if the user logged in with Google
     const loggedInWithGoogle = !!auth?.user?.googleId;
 
+    const handlePrint = (order) => {
+        const printable = `
+    <html>
+      <head>
+        <title>Order Receipt - ${order._id}</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+          }
+          h1 { text-align: center; }
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+          }
+          th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+          }
+          th {
+            background: #f5f5f5;
+          }
+          img {
+            width: 80px;
+            height: 100px;
+            object-fit: cover;
+          }
+          .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>NR-Wear - Order Receipt</h1>
+        <p><strong>Order ID:</strong> ${order._id}</p>
+        <p><strong>Date:</strong> ${new Date(order.createdAt).toLocaleString()}</p>
+        <p><strong>Status:</strong> ${order.status}</p>
+        <p><strong>Payment Method:</strong> ${order.paymentMethod}</p>
+        <p><strong>Shipping:</strong> Rs. ${order.shipping}</p>
+        <p><strong>Total:</strong> Rs. ${order.total}</p>
+        <hr />
+        <h2>Products</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Image</th>
+              <th>Size</th>
+              <th>Color</th>
+              <th>Fabric</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${order.products.map(p => `
+              <tr>
+                <td>${p.name}</td>
+                <td><img src="${p.images?.[0] || ''}" alt="${p.name}" /></td>
+                <td>${p.selectedSize || 'N/A'}</td>
+                <td><div style="width:15px; height:15px; border-radius:50%; background:${p.selectedColor};"></div></td>
+                <td>${p.selectedFabric || 'N/A'}</td>
+                <td>${p.quantity}</td>
+                <td>Rs. ${p.total}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        <div class="footer">Thank you for shopping with us!</div>
+      </body>
+    </html>
+  `;
+
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(printable);
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+    };
+
+
     return (
         <>
-          <div className="container mx-auto py-5 px-2 min-h-screen bg-gray-200">
-    <div className="flex flex-col items-center gap-8">
+            <div className="container mx-auto py-5 px-2 min-h-screen bg-gray-200">
+                <div className="flex flex-col items-center gap-8">
 
-        {/* User Profile Section */}
-        <div className="w-full p-6 bg-gray-100 rounded-lg shadow-md text-center">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">User Profile</h1>
-            {loggedInWithGoogle && <h3 className="font-sans mb-2">You Are Signed In With Google</h3>}
+                    {/* User Profile Section */}
+                    <div className="w-full p-6 bg-gray-100 rounded-lg shadow-md text-center">
+                        <h1 className="text-3xl font-bold text-gray-800 mb-2">User Profile</h1>
+                        {loggedInWithGoogle && <h3 className="font-sans mb-2">You Are Signed In With Google</h3>}
 
-            {isEditing ? (
-                <form onSubmit={handleSubmit} className="w-full flex flex-col items-center">
-                    {!loggedInWithGoogle && (
-                        <>
-                            <input 
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                className={`mt-4 p-2 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded w-3/4 focus:outline-none focus:ring-2 focus:ring-green-500`}
-                                placeholder="Name"
-                                required
-                            />
-                            {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
-                        </>
-                    )}
+                        {isEditing ? (
+                            <form onSubmit={handleSubmit} className="w-full flex flex-col items-center">
+                                {!loggedInWithGoogle && (
+                                    <>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            className={`mt-4 p-2 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded w-3/4 focus:outline-none focus:ring-2 focus:ring-green-500`}
+                                            placeholder="Name"
+                                            required
+                                        />
+                                        {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+                                    </>
+                                )}
 
-                    {!loggedInWithGoogle && (
-                        <>
-                            <input 
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                className={`mt-4 p-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded w-3/4 focus:outline-none focus:ring-2 focus:ring-green-500`}
-                                placeholder="Email"
-                                required
-                            />
-                            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-                        </>
-                    )}
+                                {!loggedInWithGoogle && (
+                                    <>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            className={`mt-4 p-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded w-3/4 focus:outline-none focus:ring-2 focus:ring-green-500`}
+                                            placeholder="Email"
+                                            required
+                                        />
+                                        {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                                    </>
+                                )}
 
-                    {!loggedInWithGoogle && (
-                        <>
-                            <input 
-                                type="password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                className={`mt-4 p-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded w-3/4 focus:outline-none focus:ring-2 focus:ring-green-500`}
-                                placeholder="Password"
-                            />
-                            {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
-                        </>
-                    )}
+                                {!loggedInWithGoogle && (
+                                    <>
+                                        <input
+                                            type="password"
+                                            name="password"
+                                            value={formData.password}
+                                            onChange={handleChange}
+                                            className={`mt-4 p-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded w-3/4 focus:outline-none focus:ring-2 focus:ring-green-500`}
+                                            placeholder="Password"
+                                        />
+                                        {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+                                    </>
+                                )}
 
-                    {!loggedInWithGoogle && (
-                        <>
-                            <input 
-                                type="text"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                className={`mt-4 p-2 border ${errors.phone ? 'border-red-500' : 'border-gray-300'} rounded w-3/4 focus:outline-none focus:ring-2 focus:ring-green-500`}
-                                placeholder="Contact Number"
-                            />
-                            {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
-                        </>
-                    )}
+                                {!loggedInWithGoogle && (
+                                    <>
+                                        <input
+                                            type="text"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                            className={`mt-4 p-2 border ${errors.phone ? 'border-red-500' : 'border-gray-300'} rounded w-3/4 focus:outline-none focus:ring-2 focus:ring-green-500`}
+                                            placeholder="Contact Number"
+                                        />
+                                        {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
+                                    </>
+                                )}
 
-                    {!loggedInWithGoogle && (
-                        <input 
-                            type="text"
-                            name="address"
-                            value={formData.address}
-                            onChange={handleChange}
-                            className="mt-4 p-2 border border-gray-300 rounded w-3/4 focus:outline-none focus:ring-2 focus:ring-green-500"
-                            placeholder="Address"
-                        />
-                    )}
+                                {!loggedInWithGoogle && (
+                                    <input
+                                        type="text"
+                                        name="address"
+                                        value={formData.address}
+                                        onChange={handleChange}
+                                        className="mt-4 p-2 border border-gray-300 rounded w-3/4 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        placeholder="Address"
+                                    />
+                                )}
 
-                    <div className="mt-6 flex gap-4">
-                        <button type="submit" className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-400">
-                            Save Changes
-                        </button>
-                        <button type="button" onClick={() => setIsEditing(false)} className="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-400">
-                            Cancel
-                        </button>
+                                <div className="mt-6 flex gap-4">
+                                    <button type="submit" className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-400">
+                                        Save Changes
+                                    </button>
+                                    <button type="button" onClick={() => setIsEditing(false)} className="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-400">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        ) : (
+                            <>
+                                <h2 className="text-2xl font-semibold text-gray-800">Name: {auth?.user.name}</h2>
+                                <p className="mt-2 text-gray-600">Email: {auth?.user.email}</p>
+
+                                {!loggedInWithGoogle && (
+                                    <>
+                                        <p className="mt-2 text-gray-600">Phone Number: {auth?.user.phone}</p>
+                                        <p className="mt-2 text-gray-600">Address: {auth?.user.address}</p>
+                                    </>
+                                )}
+
+                                {!loggedInWithGoogle && (
+                                    <div className="mt-6">
+                                        <button onClick={() => setIsEditing(true)} className="bg-black text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition-all duration-300 ease-in-out">
+                                            Edit Profile
+                                        </button>
+                                    </div>
+                                )}
+                            </>
+                        )}
                     </div>
-                </form>
-            ) : (
-                <>
-                    <h2 className="text-2xl font-semibold text-gray-800">Name: {auth?.user.name}</h2>
-                    <p className="mt-2 text-gray-600">Email: {auth?.user.email}</p>
 
-                    {!loggedInWithGoogle && (
-                        <>
-                            <p className="mt-2 text-gray-600">Phone Number: {auth?.user.phone}</p>
-                            <p className="mt-2 text-gray-600">Address: {auth?.user.address}</p>
-                        </>
-                    )}
+                    {/* Orders Section */}
+                    <div className="w-full p-6 bg-gray-100 rounded-lg shadow-md">
+                        <h2 className="text-3xl font-bold text-gray-800 text-center mb-4">Your Orders</h2>
+                        {orders.length > 0 ? (
+                            <div className="overflow-x-auto">
+                                <table className="min-w-full bg-white border border-gray-300">
+                                    <thead>
+                                        <tr className="bg-gray-200 text-center">
+                                            {['Order ID', 'Order Status', 'Shipping Price', 'Grand Total', 'Payment Method', 'Order Date', 'Product Name', 'Product Image', 'Selected Size', 'Selected Color', 'Selected Fabric', 'Product Quantity', 'Product Price'].map(header => (
+                                                <th key={header} className="py-2 px-4 text-gray-600">{header}</th>
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    <tbody className="cursor-pointer">
+                                        {orders.map((order) => (
+                                            <React.Fragment key={order._id}>
+                                                {order.products.map((product, index) => (
+                                                    <tr key={`${order._id}-${index}`} className="text-center">
+                                                        {index === 0 && (
+                                                            <>
+                                                                <td className="py-2 px-4 font-bold text-gray-700" rowSpan={order.products.length}>
+                                                                    {order._id.slice(-4).toUpperCase()}
+                                                                </td>
+                                                                <td className="py-2 px-4 font-bold text-gray-700" rowSpan={order.products.length}>
+                                                                    {order.status}
+                                                                </td>
+                                                                <td className="py-2 px-4 font-bold text-gray-700" rowSpan={order.products.length}>
+                                                                    Rs. {order.shipping}
+                                                                </td>
+                                                                <td className="py-2 px-4 font-bold text-gray-700" rowSpan={order.products.length}>
+                                                                    Rs. {order.total}
+                                                                </td>
+                                                                <td className="py-2 px-4 font-bold text-gray-700" rowSpan={order.products.length}>
+                                                                    {order.paymentMethod}
+                                                                </td>
+                                                                <td className="py-2 px-4 font-bold text-gray-700" rowSpan={order.products.length}>
+                                                                    {new Date(order.createdAt).toLocaleDateString()}
+                                                                </td>
+                                                            </>
+                                                        )}
 
-                    {!loggedInWithGoogle && (
-                        <div className="mt-6">
-                            <button onClick={() => setIsEditing(true)} className="bg-black text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition-all duration-300 ease-in-out">
-                                Edit Profile
-                            </button>
-                        </div>
-                    )}
-                </>
-            )}
-        </div>
+                                                        <td className="py-2 px-4 font-bold text-gray-700">{product.name}</td>
+                                                        <td className="py-2 px-4 flex justify-center items-center text-gray-700">
+                                                            {product.images.length > 0 ? (
+                                                                <img
+                                                                    src={product.images[0]}
+                                                                    alt={product.name}
+                                                                    className="h-28 w-20 rounded-md object-cover"
+                                                                />
+                                                            ) : (
+                                                                <span>No image</span>
+                                                            )}
+                                                        </td>
+                                                        <td className="py-2 px-4 font-bold text-gray-700">
+                                                            {product.selectedSize || 'N/A'}
+                                                        </td>
+                                                        <td className="py-2 px-4">
+                                                            <div className="flex items-center justify-center">
+                                                                <div
+                                                                    className="w-4 h-4 rounded-full"
+                                                                    style={{ backgroundColor: product.selectedColor }}
+                                                                ></div>
+                                                            </div>
+                                                        </td>
+                                                        <td className="py-2 px-4 font-bold text-gray-700">
+                                                            {product.selectedFabric || 'N/A'}
+                                                        </td>
+                                                        <td className="py-2 px-4 font-bold text-gray-700">
+                                                            {product.quantity}
+                                                        </td>
+                                                        <td className="py-2 px-4 font-bold text-gray-700">
+                                                            Rs. {product.total}
+                                                        </td>
+                                                    </tr>
+                                                ))}
 
-        {/* Orders Section */}
-        <div className="w-full p-6 bg-gray-100 rounded-lg shadow-md">
-            <h2 className="text-3xl font-bold text-gray-800 text-center mb-4">Your Orders</h2>
-            {orders.length > 0 ? (
-                <div className="overflow-x-auto">
-                    <table className="min-w-full bg-white border border-gray-300">
-                        <thead>
-                            <tr className="bg-gray-200 text-center">
-                                {['Order ID', 'Order Status', 'Shipping Price', 'Grand Total', 'Payment Method', 'Order Date', 'Product Name', 'Product Image', 'Selected Size', 'Selected Color', 'Selected Fabric', 'Product Quantity', 'Product Price'].map(header => (
-                                    <th key={header} className="py-2 px-4 text-gray-600">{header}</th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody className="cursor-pointer">
-                            {orders.map((order) =>
-                                order.products.map((product, index) => (
-                                    <tr key={`${order._id}-${index}`} className="text-center">
-                                        {index === 0 && (
-                                            <>
-                                                <td className="py-2 px-4 font-bold text-gray-700" rowSpan={order.products.length}>{order._id.slice(-4)}</td>
-                                                <td className="py-2 px-4 font-bold text-gray-700" rowSpan={order.products.length}>{order.status}</td>
-                                                <td className="py-2 px-4 font-bold text-gray-700" rowSpan={order.products.length}>Rs. {order.shipping}</td>
-                                                <td className="py-2 px-4 font-bold text-gray-700" rowSpan={order.products.length}>Rs. {order.total}</td>
-                                                <td className="py-2 px-4 font-bold text-gray-700" rowSpan={order.products.length}>{order.paymentMethod}</td>
-                                                <td className="py-2 px-4 font-bold text-gray-700" rowSpan={order.products.length}>{new Date(order.createdAt).toLocaleDateString()}</td>
-                                            </>
-                                        )}
-                                        <td className="py-2 px-4 font-bold text-gray-700">{product.name}</td>
-                                        <td className="py-2 px-4 flex justify-center items-center text-gray-700">
-                                            {product.images.length > 0 ? (
-                                                <img src={product.images[0]} alt={product.name} className="h-28 w-20 rounded-md object-cover" />
-                                            ) : (
-                                                <span>No image</span>
-                                            )}
-                                        </td>
-                                        <td className="py-2 px-4 font-bold text-gray-700">{product.selectedSize || 'N/A'}</td>
-                                        <td className="py-2 px-4">
-                                            <div className="flex items-center justify-center">
-                                                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: product.selectedColor }}></div>
-                                            </div>
-                                        </td>
-                                        <td className="py-2 px-4 font-bold text-gray-700">{product.selectedFabric || 'N/A'}</td>
-                                        <td className="py-2 px-4 font-bold text-gray-700">{product.quantity}</td>
-                                        <td className="py-2 px-4 font-bold text-gray-700">Rs. {product.total}</td>
-                                    </tr>
-                                ))
-                            )}
-                        </tbody>
-                    </table>
+                                                {/* ✅ Single print button per order */}
+                                                <tr>
+                                                    <td colSpan="13" className="text-center py-4 border-t border-gray-300">
+                                                        <button
+                                                            onClick={() => handlePrint(order)}
+                                                            className="bg-black text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition-all duration-300 ease-in-out transform hover:scale-105"
+                                                        >
+                                                            🧾 Print Receipt #{order._id.slice(-4).toUpperCase()}
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </React.Fragment>
+                                        ))}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        ) : (
+                            <p className="text-center text-gray-600 font-sans">You have no orders yet.</p>
+                        )}
+                    </div>
                 </div>
-            ) : (
-                <p className="text-center text-gray-600 font-sans">You have no orders yet.</p>
-            )}
-        </div>
-    </div>
-</div>
+            </div>
 
         </>
     );

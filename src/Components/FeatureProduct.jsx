@@ -83,7 +83,7 @@ const FeatureProduct = () => {
                                 <div className="absolute bottom-0 left-0 p-4 flex flex-col items-start space-y-2">
                                     <Link className="w-9" to={`/single-product/${product.slug}`}>
                                         <img
-                                            title="View Item"
+                                            title="View Item"   
                                             src={visitp}
                                             className="w-9 text-black p-0.5 rounded-full shadow-lg hover:text-white active:text-white active:bg-black hover:bg-black transition-colors cursor-pointer duration-300 ease-in-out"
                                         />
