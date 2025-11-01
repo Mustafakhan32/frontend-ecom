@@ -39,10 +39,8 @@ const ForgotComponent = () => {
     return (
         <>
 
-            <div className="min-h-screen flex flex-col bg-cover bg-center relative"
-                style={{
-                    backgroundImage: "url('https://images.pexels.com/photos/1126993/pexels-photo-1126993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
-                }}>
+            <div className="min-h-screen flex flex-col bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-center relative"
+              >
                 <div className="absolute inset-0 bg-black opacity-65"></div>
                 <div className="flex-grow flex items-center justify-center relative z-10 p-6">
                     <form onSubmit={handleSubmit} className="bg-white rounded-lg bg-opacity-65 shadow-lg p-8 space-y-6 w-full max-w-md">

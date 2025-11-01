@@ -57,9 +57,9 @@ export default function Footer() {
                     {/* Left Column: Business Info */}
                     <div className="space-y-2 text-center md:text-left">
                         <h4 className="text-lg font-semibold text-white">Business Information</h4>
-                        <p>Business Name: Your Business</p>
-                        <p>Email: info@yourbusiness.com</p>
-                        <p>Phone: +123 456 789</p>
+                        <p>Business Name: NR-Wear</p>
+                        <p>Email: nr.popal10@gmail.com</p>
+                        <p>Phone: +92 310-0226563</p>
                     </div>
 
                     {/* Center Column: Newsletter Signup */}
@@ -95,7 +95,7 @@ export default function Footer() {
                             <img width={19} height={19} src={fb} alt="Facebook" title="Facebook" />
                         </a>
                         <a
-                            href="https://www.instagram.com"
+                            href="https://www.instagram.com/nr_wear10?igsh=enY1empxcnFjbThz"
                             target="_blank"
                             rel="noopener noreferrer"
                             title="Instagram"

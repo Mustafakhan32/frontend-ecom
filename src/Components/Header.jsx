@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import Pie from '../assets/pie.svg';
 import { useAuth } from "../store/Auth";
-import logo from '../assets/logo.jpg';
+import logo from '../assets/logo.png';
 import axios from 'axios'
 import wish from '../assets/wishlist.svg'
 import cart from '../assets/cart.svg'
@@ -107,7 +107,7 @@ export default function Header({ setCartOpen, setWishOpen }) {
             <div className='mx-auto sticky container header-only py-4 flex justify-between items-center'>
                 {/* Logo Section */}
                 <Link to={'/'} title='HomePage'>
-                    <img title='Logo' src={Pie} className='w-10 rounded-full hover:scale-105 transition-all' />
+                    <img title='NR-WEAR' src={logo} className='w-10 rounded-full hover:scale-105 transition-all' />
                 </Link>
 
                 {/* For larger screens: Navigation Links */}

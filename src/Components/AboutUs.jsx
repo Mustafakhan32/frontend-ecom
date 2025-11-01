@@ -15,16 +15,14 @@ const AboutUs = () => {
 
                     {/* Overlayed Business Description */}
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-start items-start p-4 md:p-6 text-white rounded-lg">
-                        <h1 className="text-2xl md:text-3xl font-extrabold mb-4 mt-2">About Us</h1>
-                        <p className="text-sm md:text-lg leading-relaxed mb-2">
-                            Welcome to <span className="font-bold">dazled</span>, your premier
-                            <span className="font-semibold"> Clothing Boutique Store</span>. We’re excited to bring you a unique blend of elegance, quality, and contemporary style. Our collections are carefully curated to offer fashion-forward pieces that elevate any occasion, whether casual or formal. <br /><br />
-
-                            At dazled, we believe that style is personal and should reflect your individuality. That’s why we focus on timeless classics and on-trend pieces designed to suit every personality and body type. From luxurious fabrics to attention to detail, every item is crafted to ensure comfort, durability, and a refined look that resonates with confidence. <br /><br />
+                        <h1 className="text-2xl md:text-3xl font-extrabold mb-4 mt-16">About Us</h1>
+                        <p className="text-sm md:text-xl leading-relaxed mb-2">
+                            Welcome to <span className="font-bold">NR-WEAR</span>, your premier
+                            <span className="font-semibold"> Clothing Boutique Store</span>.your destination for contemporary clothing that blends effortless style with everyday comfort. We’re dedicated to bringing you a curated selection of timeless and trend-driven pieces designed to empower confidence and self-expression.
+                            <br></br>At nrwear, we believe that fashion is more than just what you wear — it’s how you show the world who you are. That’s why our collections are thoughtfully crafted to suit every mood, moment, and personality. From refined essentials to standout statement pieces,<br></br> each item is made with attention to detail, premium fabrics, and a commitment to lasting quality.
                         </p>
-
                         <p className="text-md md:text-xl leading-relaxed mb-2">
-                            Founded in <span className="font-semibold">2022</span> by <span className="font-semibold">BAZ</span>.
+                            Founded in <span className="font-semibold">2022</span> by <span className="font-semibold">NR-WEAR</span>. was born from a passion for fashion that celebrates individuality. <br></br>While we currently focus on clothing for both women and men, our vision continues to grow <br></br> with accessories coming soon to complete your look from head to toe.
                         </p>
                     </div>
                 </div>
